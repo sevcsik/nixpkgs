@@ -661,6 +661,8 @@ with pkgs;
 
   esh = callPackage ../tools/text/esh { };
 
+  eszemelyi-kliens = callPackage ../tools/security/eszemelyi-kliens { };
+
   ezstream = callPackage ../tools/audio/ezstream { };
 
   genymotion = callPackage ../development/mobile/genymotion { };

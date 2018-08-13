@@ -253,6 +253,12 @@ lib.mapAttrs (n: v: v // { shortName = n; }) rec {
     free = false;
   };
 
+  eszemelyi-kliens = {
+    fullName = "Az eSzemélyi Kliens végfelhasználói szerződése - EULA";
+    url = https://eszemelyi.hu/dok/eSzemelyi_Kliens_vegfelhasznaloi_nyilatkozat_v11.pdf;
+    free = false;
+  };
+
   eupl11 = spdx {
     spdxId = "EUPL-1.1";
     fullName = "European Union Public License 1.1";
