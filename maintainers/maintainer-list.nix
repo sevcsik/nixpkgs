@@ -3610,6 +3610,11 @@
     github = "seppeljordan";
     name = "Sebastian Jordan";
   };
+  sevcsik = {
+    email = "sevcsik@sevdev.hu";
+    github = "sevcsik";
+    name = "András Sevcsik-Zajácz";
+  };
   sfrijters = {
     email = "sfrijters@gmail.com";
     github = "sfrijters";
