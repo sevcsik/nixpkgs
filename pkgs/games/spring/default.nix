@@ -1,4 +1,7 @@
-{ stdenv, fetchurl, cmake, lzma, boost, libdevil, zlib, p7zip
+let pkgs = import <nixpkgs> {};
+in pkgs.callPackage (
+
+{ stdenv, fetchgit, git, cmake, lzma, boost, libdevil, zlib, p7zip
 , openal, libvorbis, glew, freetype, xorg, SDL2, libGLU_combined
 , asciidoc, libxslt, docbook_xsl, docbook_xsl_ns, curl, makeWrapper
 , jdk ? null, python ? null, systemd, libunwind, which, minizip
@@ -8,11 +11,13 @@
 stdenv.mkDerivation rec {
 
   name = "spring-${version}";
-  version = "104.0";
+  version = "104.0.1-1755";
 
-  src = fetchurl {
-    url = "mirror://sourceforge/springrts/spring_${version}_src.tar.lzma";
-    sha256 = "05pclcbw7v481pqz7bgirlk37494hy4hx4jghhnlzhdaz1cvzc6f";
+  src = fetchgit {
+    deepClone = true;
+    url = "https://github.com/spring/spring";
+    rev = "426521d";
+    sha256 = "1xwa73pdm420nvjcqz3yz246hbvrwln1jhdmmsfkqdrid5djlsdm";
   };
 
   # The cmake included module correcly finds nix's glew, however
@@ -29,7 +34,7 @@ stdenv.mkDerivation rec {
                 "-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON"
                 "-DPREFER_STATIC_LIBS:BOOL=OFF"];
 
-  buildInputs = [ cmake lzma boost libdevil zlib p7zip openal libvorbis freetype SDL2
+  buildInputs = [ git cmake lzma boost libdevil zlib p7zip openal libvorbis freetype SDL2
     xorg.libX11 xorg.libXcursor libGLU_combined glew asciidoc libxslt docbook_xsl curl makeWrapper
     docbook_xsl_ns systemd libunwind which minizip ]
     ++ stdenv.lib.optional withAI jdk
@@ -52,3 +57,5 @@ stdenv.mkDerivation rec {
     platforms = platforms.linux;
   };
 }
+
+) {}
